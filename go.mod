@@ -1,4 +1,4 @@
-module go_test
+module PhysicsSimulation
 
 go 1.22.2
 

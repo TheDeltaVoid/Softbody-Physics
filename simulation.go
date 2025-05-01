@@ -73,7 +73,7 @@ func (s *Simulation) addRectSoftBody(pos [2]float64, width int32, height int32, 
 	}
 
 	soft_body.collision_steps = 2
-	soft_body.physic_steps = 5
+	soft_body.physic_steps = 10
 
 	s.addSoftBody(soft_body)
 }
