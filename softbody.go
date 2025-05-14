@@ -101,6 +101,7 @@ type SoftBody struct {
 	point_radius    float64
 	physic_steps    int32
 	collision_steps int32
+	volume_force    float64
 }
 
 func (sb *SoftBody) update(delta_time float64, polygons []Polygon) {
@@ -123,12 +124,22 @@ func (sb *SoftBody) update(delta_time float64, polygons []Polygon) {
 			spring.index = int32(index)
 		}
 
+		var poss [][2]float64 = [][2]float64{}
+		for index := range len(sb.points) {
+			poss = append(poss, sb.points[index].pos)
+		}
+
+		var middle_point = averageVec2(poss)
+
 		for i := range sb.collision_steps {
 			i += 0
 
 			for index := range len(sb.points) {
 				var point *MassPoint = &sb.points[index]
 				point.resolveCollision(polygons, sb.points)
+
+				var force [2]float64 = scaleVec2(normalizedVec2(subVec2(point.pos, middle_point)), sb.volume_force)
+				point.applyForce(force)
 			}
 		}
 	}

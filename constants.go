@@ -1,4 +1,4 @@
 package main
 
-const GRAITY float64 = 9.8
-const FPS int32 = 120
+const GRAITY float64 = 20
+const FPS int32 = 0

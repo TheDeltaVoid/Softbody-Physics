@@ -52,6 +52,15 @@ func descaleVec2(vec [2]float64, divisor float64) [2]float64 {
 	return vec
 }
 
+func rotateVec2(vec [2]float64, degrees float64) [2]float64 {
+	var radians = degrees / 360 * 2 * math.Pi
+
+	var new_x = math.Cos(radians)*vec[0] - math.Sin(radians)*vec[1]
+	var new_y = math.Sin(radians)*vec[0] + math.Cos(radians)*vec[1]
+
+	return [2]float64{new_x, new_y}
+}
+
 func lengthVec2(vec [2]float64) float64 {
 	return math.Sqrt(vec[0]*vec[0] + vec[1]*vec[1])
 }
